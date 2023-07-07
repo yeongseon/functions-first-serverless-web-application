@@ -27,8 +27,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             blob_name=blob_client.blob_name,
             account_key=blob_service_client.credential.account_key,
             permission=BlobSasPermissions(read=True, write=True, create=True),
-            start=datetime.utcnow() - timedelta(minutes=1),
-            end=datetime.utcnow() + timedelta(minutes=5),
+            expiry=datetime.utcnow() + timedelta(minutes=5),
         )
 
         return func.HttpResponse(
